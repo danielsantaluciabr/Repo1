@@ -11,14 +11,14 @@ public class LogParserFactoryImplTest extends TestCase {
 
 	@Test
 	public void testQuakeParserCreation(){
-		LogParserFactoryImpl logFactory = new LogParserFactoryImpl();
+		LogParserFactoryImpl logFactory = LogParserFactoryImpl.getInstance();
 		
 		assertTrue(logFactory.createParser(LogParserType.QUAKE_3).getClass().equals(Quake3LogParser.class));
 	}
 	
 	@Test
 	public void testUnexpectedType(){	
-		LogParserFactoryImpl logFactory = new LogParserFactoryImpl();
+		LogParserFactoryImpl logFactory = LogParserFactoryImpl.getInstance();
 		boolean testPass = false;
 		try {
 			logFactory.createParser(null);
@@ -32,7 +32,7 @@ public class LogParserFactoryImplTest extends TestCase {
 
 	@Test
 	public void testUnsupportedType(){	
-		LogParserFactoryImpl logFactory = new LogParserFactoryImpl();
+		LogParserFactoryImpl logFactory = LogParserFactoryImpl.getInstance();
 		boolean testPass = false;
 		try {
 			logFactory.createParser(LogParserType.UNREAL_TOURNAMENT);
