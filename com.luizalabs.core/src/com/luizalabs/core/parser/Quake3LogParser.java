@@ -102,7 +102,7 @@ final class Quake3LogParser implements LogParser {
 		List<String> rawKillsEntries = extractRawKills(game);
 		gameStat.setTotal_kills(rawKillsEntries.size());
 		
-		gameStat.setKills(createKillsMap(rawKillsEntries));
+		gameStat.setKills(createKillsMap(players, rawKillsEntries));
 				
 		return gameStat;
 	}
@@ -110,22 +110,21 @@ final class Quake3LogParser implements LogParser {
 	/*
 	 * Transforma as entradas de mortes em um mapa de estatística
 	 */
-	private Map<String, Integer> createKillsMap(List<String> rawKillsEntries) {
+	private Map<String, Integer> createKillsMap(List<String> players, List<String> rawKillsEntries) {
 		Map<String, Integer> killMap = new HashMap<String, Integer>();
+		
+		for(String player:players){
+			killMap.put(player, 0);
+		}
+		
 		for(String rawKill: rawKillsEntries){
 			String[] assassinAndKilled = findAssassinAndKilled(rawKill);
 			String assassin = assassinAndKilled[0];
 			String killed = assassinAndKilled[1];
 			
 			if(assassin.contains(KEY_WORD_WORLD)){
-				if (killMap.get(killed) == null){
-					killMap.put(killed, 0);
-				}
 				killMap.put(killed, killMap.get(killed) - 1 );
 				continue;
-			}
-			if (killMap.get(assassin) == null){
-				killMap.put(assassin, 0);
 			}
 			
 			killMap.put(assassin, killMap.get(assassin) + 1 );

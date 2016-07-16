@@ -3,13 +3,11 @@ package com.luizalabs.core.parser;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import junit.framework.TestCase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONML;
 import org.json.JSONObject;
 import org.junit.Test;
 
@@ -54,13 +52,11 @@ public class Quake3LogParserTest extends TestCase{
 		assertEquals(3, players.length());
 		for(Object player:players){
 			assertTrue(expectedPlayers.contains(player));
-		}
+		} 
 
-		Map kills = (Map)jsonGame1.get("kills");
-		assertEquals(new Integer(0), kills.get("Mocinha"));
-		assertEquals(new Integer(-5), kills.get("sgalamido"));
-		assertEquals(new Integer(0), kills.get("Dono da Bola"));
-		assertEquals(3, kills.size());
+		JSONObject kills = jsonGame1.getJSONObject("kills");
+		assertEquals("{\"Mocinha\":0,\"Dono da Bola\":0,\"Isgalamido\":-5}", kills.toString());
+		
 	}
 
 	private File getFile(String fileName) {
