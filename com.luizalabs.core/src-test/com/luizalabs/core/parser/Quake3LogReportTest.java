@@ -15,7 +15,7 @@ public class Quake3LogReportTest extends TestCase {
 
 	@Test
 	public void testJSonReport(){
-		Quake3LogReport rep = new Quake3LogReport();
+		Quake3LogReport quakeLogReport = new Quake3LogReport();
 		
 		ArrayList<QuakeGameStat> games = new ArrayList<QuakeGameStat>(); 
 		
@@ -33,9 +33,9 @@ public class Quake3LogReportTest extends TestCase {
 		gameStat1.setKills(killsMap);
 		
 		games.add(gameStat1);
-		rep.setGames(games);
+		quakeLogReport.setGames(games);
 		
-		assertEquals("[{\"total_kills\":20,\"players\":[\"Player 1\",\"Player 2\"],\"kills\":{\"player1\":3,\"player2\":1}}]", rep.getJSonReport().toString());
+		assertEquals("[{\"total_kills\":20,\"players\":[\"Player 1\",\"Player 2\"],\"kills\":{\"player1\":3,\"player2\":1}}]", quakeLogReport.getJSonReport().toString());
 		
 	}
 	
