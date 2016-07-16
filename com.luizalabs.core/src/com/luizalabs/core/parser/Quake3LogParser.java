@@ -25,13 +25,13 @@ import com.luizalabs.domain.parser.LogReport;
  */
 final class Quake3LogParser implements LogParser {
 
-	private static final String KEY_WORD_WORLD = "<world>";
+	static final String KEY_WORD_WORLD = "<world>";
 
-	private static final String KEY_WORD_CLIENT_USERINFO_CHANGED = "ClientUserinfoChanged";
+	static final String KEY_WORD_CLIENT_USERINFO_CHANGED = "ClientUserinfoChanged";
 
-	private static final String KEY_WORD_KILLED = "killed";
+	static final String KEY_WORD_KILLED = "killed";
 
-	private static final String KEY_WORD_INITGAME = "InitGame";
+	static final String KEY_WORD_INITGAME = "InitGame";
 
 	static final String QUAKE_3_LOG_FILE_PATH = "games.quake.log.path";
 	
@@ -184,7 +184,7 @@ final class Quake3LogParser implements LogParser {
 		return rawKills;
 	}
 
-	Properties getCoreProperties() {
+	private Properties getCoreProperties() {
 		Properties props = PropertyLoader.load(PropertyLoader.CORE_PROPERTY_FILE_NAME, PropertyLoader.PROPERTIES_FILE_PATH);
 		if(props == null){
 			throw new UnexpectedError(null, "Nao foi possível carregar arquivo de propriedades: " + PropertyLoader.CORE_PROPERTY_FILE_NAME);
