@@ -12,6 +12,19 @@ import com.luizalabs.domain.parser.LogParserType;
  */
 public final class LogParserFactoryImpl implements LogParserFactory{
 
+	private static LogParserFactoryImpl instance;
+	
+	private LogParserFactoryImpl(){
+		// faz nada
+	}
+	
+	public static LogParserFactoryImpl getInstance() {
+		if(instance == null){
+			instance = new LogParserFactoryImpl();
+		}
+		return instance;
+	}
+	
 	public LogParser createParser(LogParserType type) {
 		if(type == null){
 			throw new UnexpectedError("Operation not supported, type:" + type);			
