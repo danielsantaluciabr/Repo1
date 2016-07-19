@@ -32,5 +32,5 @@ public class QuakeLogService extends Application{
 		
 		return result;
 	}
-	
+
 }

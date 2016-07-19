@@ -41,13 +41,9 @@ final class Quake3LogParser implements LogParser {
 	 * Retorna um relatorio de jogo  
 	 */
 	public LogReport getLogReport() {
-		Properties props = getCoreProperties();
 	
-		String quakeFilePath = (String)props.get(QUAKE_3_LOG_FILE_PATH);
-		String quakeFilename = (String)props.get(QUAKE_3_LOG_FILE_NAME);
-		
 		LogReport logReport = null;
-		File quakeLogFile = new File(quakeFilePath + quakeFilename); 
+		File quakeLogFile = getLogFile(); 
 		try {
 			logReport = createLogReport(quakeLogFile);
 			
@@ -56,6 +52,15 @@ final class Quake3LogParser implements LogParser {
 		}
 	
 		return logReport;
+	}
+
+	File getLogFile() {
+		Properties props = getCoreProperties();
+		String quakeFilePath = (String)props.get(QUAKE_3_LOG_FILE_PATH);
+		String quakeFilename = (String)props.get(QUAKE_3_LOG_FILE_NAME);
+		
+		File quakeLogFile = new File(quakeFilePath + quakeFilename);
+		return quakeLogFile;
 	}
 
 	LogReport createLogReport(File quakeLogFile) throws Exception {
